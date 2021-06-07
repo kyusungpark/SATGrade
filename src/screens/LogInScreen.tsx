@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react';
-import { SafeAreaView, StyleSheet, Text } from 'react-native';
+import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
 
 import AppTextInput from '../components/AppTextInput';
 import AppButton from '../components/AppButton';
@@ -27,7 +27,15 @@ const SignInScreen: FC<Props> = ({ navigation }) => {
 				title={'Continue'}
 				onPress={() => navigation.navigate('Secret')}
 			/>
-			<Text>Have an Account? Sign in</Text>
+			<View style={{ flexDirection: 'row' }}>
+				<Text>Dont't Have an Account? </Text>
+				<Text
+					style={{ color: 'blue' }}
+					onPress={() => navigation.navigate('SignUp')}
+				>
+					Sign up
+				</Text>
+			</View>
 		</SafeAreaView>
 	);
 };

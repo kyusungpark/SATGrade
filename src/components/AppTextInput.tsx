@@ -1,10 +1,10 @@
 import React, { FC } from 'react';
 import { StyleSheet, TextInput, View } from 'react-native';
 
-interface Props {
+type Props = {
 	placeholder: string;
 	onChangeText: (text: string) => void;
-}
+};
 
 const Input: FC<Props> = ({ onChangeText, placeholder }) => {
 	return (
@@ -13,7 +13,7 @@ const Input: FC<Props> = ({ onChangeText, placeholder }) => {
 				style={styles.text}
 				placeholder={placeholder}
 				onChangeText={onChangeText}
-				secureTextEntry={placeholder === 'Password' ? true : false}
+				secureTextEntry={placeholder.includes('Password') ? true : false}
 			/>
 		</View>
 	);
@@ -33,6 +33,8 @@ const styles = StyleSheet.create({
 	},
 	text: {
 		color: 'black',
+		width: '100%',
+		paddingLeft: 20,
 	},
 });
 
