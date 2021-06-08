@@ -1,6 +1,17 @@
-import HomeScreen from './HomeScreen';
+import DashboardScreen from './DashboardScreen';
+import DrawerScreen from './DrawerScreen';
+import GradeScreen from './GradeScreen';
+import LandingScreen from './LandingScreen';
 import LogInScreen from './LogInScreen';
-import SecretScreen from './SecretScreen';
+import HomeScreen from './HomeScreen';
 import SignUpScreen from './SignUpScreen';
 
-export { HomeScreen, LogInScreen, SecretScreen, SignUpScreen };
+export {
+	DashboardScreen,
+  DrawerScreen,
+	GradeScreen,
+	HomeScreen,
+	LandingScreen,
+	LogInScreen,
+	SignUpScreen,
+};

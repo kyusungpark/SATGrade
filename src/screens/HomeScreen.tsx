@@ -1,29 +1,39 @@
-import React, { FC } from 'react';
-import { Button, SafeAreaView, StyleSheet, Text } from 'react-native';
-import AppButton from '../components/AppButton';
+import React, { useEffect, useState } from 'react';
+import { Button, SafeAreaView, StyleSheet, Text, View } from 'react-native';
+
+import firebase from '../config/firebase';
 
 type Props = {
-  navigation: any; 
+	navigation: any;
 };
 
-const HomeScreen: FC<Props> = ({ navigation }) => {
+// should not be able to go back to authStack when logged in
+const HomeScreen = ({ navigation }: Props) => {
+	//? WHY ? after currentUser
+	const user = firebase.auth().currentUser?.displayName;
+
+	//! HANDLE: WHEN signed out go to login Screen
+	//! NEED TO NAVIGATE TO AUTHSTACK
+	const handleSignOut = async () => {
+		try {
+			await firebase.auth().signOut();
+			navigation.navigate('LogIn'); //! here
+			console.log('User Signed Out');
+		} catch (e) {
+			console.error(e.message);
+		}
+	};
+
 	return (
 		<SafeAreaView style={styles.container}>
-			<Text>Home Screen</Text>
-			<AppButton
-				title={'Sign Up'}
-				onPress={() => navigation.navigate('SignUp')}
-			/>
-
-			<AppButton
-				title={'Log In'}
-				onPress={() => navigation.navigate('LogIn')}
-			/>
+			<View style={styles.text}>
+				<Text>Welcome</Text>
+				<Text>{user}</Text>
+				<Button title='sign out' onPress={handleSignOut} />
+			</View>
 		</SafeAreaView>
 	);
 };
-
-export default HomeScreen;
 
 const styles = StyleSheet.create({
 	container: {
@@ -31,4 +41,9 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		justifyContent: 'center',
 	},
+	text: {
+		alignItems: 'center',
+	},
 });
+
+export default HomeScreen;

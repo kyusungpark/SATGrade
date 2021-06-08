@@ -1,15 +1,23 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 
-import { SecretScreen } from '../screens';
+import { HomeScreen } from '../screens';
+import DrawerNavigation from './DrawerNavigation';
+import TabNavigation from './TabNavigation';
 
-const Stack = createStackNavigator();
+const { Navigator, Screen } = createStackNavigator();
+// const { Navigator, Screen } = createBottomTabNavigator();
+// const { Navigator, Screen } = createDrawerNavigator();
 
 const AppNavigation = () => {
 	return (
-		<Stack.Navigator>
-			<Stack.Screen name='Secret' component={SecretScreen} />
-		</Stack.Navigator>
+		<Navigator>
+			{/* <Screen name='Home' component={HomeScreen} /> */}
+			<Screen name='Tab' component={TabNavigation} />
+			<Screen name='Drawer' component={DrawerNavigation} />
+		</Navigator>
 	);
 };
 

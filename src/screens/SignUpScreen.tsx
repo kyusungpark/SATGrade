@@ -9,11 +9,11 @@ type Props = {
 	navigation: any;
 };
 
-const SignUpScreen: FC<Props> = ({ navigation }) => {
-	const [name, setName] = useState<string | null>(null);
-	const [email, setEmail] = useState<string | null>(null);
-	const [password, setPassword] = useState<string | null>(null);
-	const [confirmPassword, setConfirmPassword] = useState<string | null>(null);
+const SignUpScreen = ({ navigation }: Props) => {
+	const [name, setName] = useState<string>('');
+	const [email, setEmail] = useState<string>('');
+	const [password, setPassword] = useState<string>('');
+	const [confirmPassword, setConfirmPassword] = useState<string>('');
 	// const [error, setError] = useState<string | null>(null); //! WHY object not valid children
 
 	// handle missing field error
@@ -28,7 +28,7 @@ const SignUpScreen: FC<Props> = ({ navigation }) => {
 		try {
 			const { user } = await firebase
 				.auth()
-				.createUserWithEmailAndPassword(email, password);
+				.createUserWithEmailAndPassword(email.trim(), password.trim());
 
 			if (user) {
 				// add to firestore
@@ -36,7 +36,7 @@ const SignUpScreen: FC<Props> = ({ navigation }) => {
 					.firestore()
 					.collection('users')
 					.doc(user.uid)
-					.set({ name, email, id: user.uid });
+					.set({ name: name.trim(), email: email.trim(), id: user.uid });
 
 				// set displayname
 				await user?.updateProfile({ displayName: name });

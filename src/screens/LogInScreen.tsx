@@ -17,7 +17,9 @@ const LogInScreen: FC<Props> = ({ navigation }) => {
 	// handle missing field error
 	const handleLogIn = async () => {
 		try {
-			await firebase.auth().signInWithEmailAndPassword(email, password);
+			await firebase
+				.auth()
+				.signInWithEmailAndPassword(email.trim(), password.trim());
 		} catch (e) {
 			// setError(e.message);
 			console.log(e.message);

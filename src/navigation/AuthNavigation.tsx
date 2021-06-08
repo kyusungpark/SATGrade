@@ -1,28 +1,22 @@
-import React, { FC } from 'react';
+import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import {
-	HomeScreen,
-	LogInScreen,
-	SecretScreen,
-	SignUpScreen,
-} from '../screens';
+import { LandingScreen, LogInScreen, SignUpScreen } from '../screens';
 
-const Stack = createStackNavigator();
+const { Navigator, Screen } = createStackNavigator();
 
 const screenOptions = {
 	headerShown: false,
 };
 
 //! DO I NEED SECRET HERE? SHOULD GO TO AppNavigation */
-const AuthNavigation: FC = () => {
+const AuthNavigation = () => {
 	return (
-		<Stack.Navigator initialRouteName='Home' screenOptions={screenOptions}>
-			<Stack.Screen name='Home' component={HomeScreen} />
-			<Stack.Screen name='SignUp' component={SignUpScreen} />
-			<Stack.Screen name='LogIn' component={LogInScreen} />
-			{/* <Stack.Screen name='Secret' component={SecretScreen} /> */}
-		</Stack.Navigator>
+		<Navigator initialRouteName='LandingScreen' screenOptions={screenOptions}>
+			<Screen name='Landing' component={LandingScreen} />
+			<Screen name='SignUp' component={SignUpScreen} />
+			<Screen name='LogIn' component={LogInScreen} />
+		</Navigator>
 	);
 };
 

@@ -1,11 +1,12 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 
 import AppNavigation from './src/navigation/AppNavigation';
 import AuthNavigation from './src/navigation/AuthNavigation';
 import firebase from './src/config/firebase';
 
-const App: FC = () => {
+//! GIT IGNORE FIREBASE
+const App = () => {
 	const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
 	// do I use this?

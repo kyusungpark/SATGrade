@@ -11,6 +11,7 @@ const Input: FC<Props> = ({ placeholder, onChangeText }) => {
 	return (
 		<View style={styles.container}>
 			<TextInput
+				autoCapitalize='none'
 				style={styles.text}
 				placeholder={placeholder}
 				onChangeText={onChangeText}
