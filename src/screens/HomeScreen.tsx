@@ -12,24 +12,11 @@ const HomeScreen = ({ navigation }: Props) => {
 	//? WHY ? after currentUser
 	const user = firebase.auth().currentUser?.displayName;
 
-	//! HANDLE: WHEN signed out go to login Screen
-	//! NEED TO NAVIGATE TO AUTHSTACK
-	const handleSignOut = async () => {
-		try {
-			await firebase.auth().signOut();
-			navigation.navigate('LogIn'); //! here
-			console.log('User Signed Out');
-		} catch (e) {
-			console.error(e.message);
-		}
-	};
-
 	return (
 		<SafeAreaView style={styles.container}>
 			<View style={styles.text}>
 				<Text>Welcome</Text>
 				<Text>{user}</Text>
-				<Button title='sign out' onPress={handleSignOut} />
 			</View>
 		</SafeAreaView>
 	);

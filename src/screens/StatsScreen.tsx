@@ -1,15 +1,15 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-const DrawerScreen = () => {
+const StatsScreen = () => {
 	return (
 		<View style={styles.container}>
-			<Text>Drawer</Text>
+			<Text>Dashboard</Text>
 		</View>
 	);
 };
 
-export default DrawerScreen;
+export default StatsScreen;
 
 const styles = StyleSheet.create({
 	container: {

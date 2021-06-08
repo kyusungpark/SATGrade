@@ -1,17 +1,19 @@
-import DashboardScreen from './DashboardScreen';
-import DrawerScreen from './DrawerScreen';
+import StatsScreen from './StatsScreen';
 import GradeScreen from './GradeScreen';
+import HomeScreen from './HomeScreen';
 import LandingScreen from './LandingScreen';
 import LogInScreen from './LogInScreen';
-import HomeScreen from './HomeScreen';
+import ProfileScreen from './ProfileScreen';
+import RankingsScreen from './RankingsScreen';
 import SignUpScreen from './SignUpScreen';
 
 export {
-	DashboardScreen,
-  DrawerScreen,
 	GradeScreen,
 	HomeScreen,
 	LandingScreen,
 	LogInScreen,
+	ProfileScreen,
+	RankingsScreen,
 	SignUpScreen,
+	StatsScreen,
 };

@@ -1,15 +1,15 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-const DashboardScreen = () => {
+const GradeScreen = () => {
 	return (
 		<View style={styles.container}>
-			<Text>Dashboard</Text>
+			<Text>Rankings</Text>
 		</View>
 	);
 };
 
-export default DashboardScreen;
+export default GradeScreen;
 
 const styles = StyleSheet.create({
 	container: {

@@ -9,7 +9,6 @@ const screenOptions = {
 	headerShown: false,
 };
 
-//! DO I NEED SECRET HERE? SHOULD GO TO AppNavigation */
 const AuthNavigation = () => {
 	return (
 		<Navigator initialRouteName='LandingScreen' screenOptions={screenOptions}>
