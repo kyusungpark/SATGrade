@@ -1,55 +1,49 @@
 import React, { FC, useState } from 'react';
 import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
-import firebase from '../config/firebase';
-
-// import firebase from 'firebase/app';
-import 'firebase/firestore';
-import 'firebase/auth';
 
 import AppButton from '../components/AppButton';
 import AppTextInput from '../components/AppTextInput';
+import firebase from '../config/firebase';
 
 type Props = {
 	navigation: any;
 };
 
 const SignUpScreen: FC<Props> = ({ navigation }) => {
-	let [name, setName] = useState<string>('');
-	let [email, setEmail] = useState<string>('');
-	let [password, setPassword] = useState<string>('');
-	let [confirmPassword, setConfirmPassword] = useState<string>('');
+	const [name, setName] = useState<string | null>(null);
+	const [email, setEmail] = useState<string | null>(null);
+	const [password, setPassword] = useState<string | null>(null);
+	const [confirmPassword, setConfirmPassword] = useState<string | null>(null);
+	// const [error, setError] = useState<string | null>(null); //! WHY object not valid children
 
-	//! handle empty fields
-	const handleSignUp = () => {
-		if (password.trim() !== confirmPassword.trim()) {
-			return alert('Passwords do not match.');
+	// handle missing field error
+	//! require password length to be at least 6 characters
+	//! show in textinput filled if something is missing
+
+	const handleSignUp = async () => {
+		if (password !== confirmPassword) {
+			return alert('Password do not match');
 		}
 
 		try {
-			firebase
+			const { user } = await firebase
 				.auth()
-				.createUserWithEmailAndPassword(email.trim(), password.trim())
-				.then(response => {
-					const uid = response.user.uid;
-					const data = {
-						id: uid,
-						email: email.trim(),
-						name: name.trim(),
-					};
+				.createUserWithEmailAndPassword(email, password);
 
-					// create users in db
-					const usersRef = firebase.firestore().collection('users');
-					usersRef
-						.doc(uid)
-						.set(data)
-						.then(() => {
-							navigation.navigate('Secret');
-						})
-						.catch(error => alert(error));
-				});
-		} catch (error) {
-			console.error(error.code);
-			console.error(error.message);
+			if (user) {
+				// add to firestore
+				await firebase
+					.firestore()
+					.collection('users')
+					.doc(user.uid)
+					.set({ name, email, id: user.uid });
+
+				// set displayname
+				await user?.updateProfile({ displayName: name });
+			}
+		} catch (e) {
+			// setError(e.message);
+			console.log(e.message);
 		}
 	};
 

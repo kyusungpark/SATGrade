@@ -1,30 +1,30 @@
-import { StatusBar } from 'expo-status-bar';
-import React, { FC, useState } from 'react';
-import { StyleSheet } from 'react-native';
+import React, { FC, useEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 
 import AppNavigation from './src/navigation/AppNavigation';
 import AuthNavigation from './src/navigation/AuthNavigation';
-
-// render Auth or App depending on whether user is logged in or not
+import firebase from './src/config/firebase';
 
 const App: FC = () => {
-	const [user, setUser] = useState<boolean>(false);
+	const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+
+	// do I use this?
+	useEffect(() => {
+		firebase.auth().onAuthStateChanged(user => {
+			if (user) {
+				setIsLoggedIn(true);
+				console.log('LOGGED IN');
+			} else {
+				console.log('NOT LOGGED IN');
+			}
+		});
+	}, [isLoggedIn]);
 
 	return (
 		<NavigationContainer>
-			{user ? <AppNavigation /> : <AuthNavigation />}
+			{isLoggedIn ? <AppNavigation /> : <AuthNavigation />}
 		</NavigationContainer>
 	);
 };
 
 export default App;
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: '#fff',
-		alignItems: 'center',
-		justifyContent: 'center',
-	},
-});

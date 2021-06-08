@@ -1,12 +1,13 @@
 import React, { FC } from 'react';
-import { StyleSheet, TextInput, View } from 'react-native';
+import { StyleSheet, Text, TextInput, View } from 'react-native';
 
 type Props = {
+	// error: string | null; //! optional? string | null
 	placeholder: string;
 	onChangeText: (text: string) => void;
 };
 
-const Input: FC<Props> = ({ onChangeText, placeholder }) => {
+const Input: FC<Props> = ({ placeholder, onChangeText }) => {
 	return (
 		<View style={styles.container}>
 			<TextInput
@@ -15,6 +16,9 @@ const Input: FC<Props> = ({ onChangeText, placeholder }) => {
 				onChangeText={onChangeText}
 				secureTextEntry={placeholder.includes('Password') ? true : false}
 			/>
+			{/* <View>
+				<Text>{error ? error : ''}</Text>
+			</View> */}
 		</View>
 	);
 };

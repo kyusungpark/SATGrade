@@ -21,7 +21,7 @@ const AuthNavigation: FC = () => {
 			<Stack.Screen name='Home' component={HomeScreen} />
 			<Stack.Screen name='SignUp' component={SignUpScreen} />
 			<Stack.Screen name='LogIn' component={LogInScreen} />
-			<Stack.Screen name='Secret' component={SecretScreen} />
+			{/* <Stack.Screen name='Secret' component={SecretScreen} /> */}
 		</Stack.Navigator>
 	);
 };
