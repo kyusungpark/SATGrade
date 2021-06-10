@@ -1,29 +1,31 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-import Choice from './Choice';
+import AppTextInput from '../AppTextInput';
 
-const MultipleChoice = ({ choices, number }) => {
-	const choice = choices
-		.split('')
-		.map((letter, i) => <Choice letter={letter} />);
+const Grid = ({ number }) => {
+	const onChangeText = () => {
+		console.log('manage state');
+	};
 
 	return (
 		<View style={styles.container}>
 			<Text style={styles.text}>{number + 1}.</Text>
-			{choice}
+			<AppTextInput
+				placeholder={'type your answer here'}
+				onChangeText={onChangeText}
+			/>
 		</View>
 	);
 };
 
-export default MultipleChoice;
+export default Grid;
 
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		alignItems: 'center',
 		justifyContent: 'center',
-		flexDirection: 'row',
 	},
 	text: {
 		fontSize: 15,

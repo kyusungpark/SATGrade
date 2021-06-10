@@ -4,18 +4,12 @@ import firebase from '../config/firebase';
 
 import AppButton from '../components/AppButton';
 
-type Props = {
-	navigation: any;
-};
-
-const ProfileScreen = ({ navigation }: Props) => {
+const ProfileScreen = () => {
 	// const user = firebase.auth().currentUser;
 
 	const handleSignOut = async () => {
 		try {
 			await firebase.auth().signOut();
-			navigation.navigate('LogIn'); //!!!!!!! here
-			console.log('User Signed Out');
 		} catch (e) {
 			console.error(e.message);
 		}

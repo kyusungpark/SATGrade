@@ -16,10 +16,11 @@ const App = () => {
 				setIsLoggedIn(true);
 				console.log('LOGGED IN');
 			} else {
+				setIsLoggedIn(false);
 				console.log('NOT LOGGED IN');
 			}
 		});
-	}, [isLoggedIn]);
+	}, []);
 
 	return (
 		<NavigationContainer>
