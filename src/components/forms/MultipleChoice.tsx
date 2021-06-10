@@ -6,11 +6,11 @@ import Choice from './Choice';
 const MultipleChoice = ({ choices, number }) => {
 	const choice = choices
 		.split('')
-		.map((letter, i) => <Choice letter={letter} />);
+		.map((letter, i) => <Choice key={i} letter={letter} />);
 
 	return (
 		<View style={styles.container}>
-			<Text style={styles.text}>{number + 1}.</Text>
+			<Text style={styles.text}>{number}.</Text>
 			{choice}
 		</View>
 	);

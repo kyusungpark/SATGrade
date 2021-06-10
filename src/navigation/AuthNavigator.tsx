@@ -5,10 +5,6 @@ import { LandingScreen, LogInScreen, SignUpScreen } from '../screens';
 
 const { Navigator, Screen } = createStackNavigator();
 
-const screenOptions = {
-	headerShown: false,
-};
-
 const AuthNavigation = () => {
 	return (
 		<Navigator initialRouteName='LandingScreen' screenOptions={screenOptions}>
@@ -20,3 +16,7 @@ const AuthNavigation = () => {
 };
 
 export default AuthNavigation;
+
+const screenOptions = {
+	headerShown: false,
+};

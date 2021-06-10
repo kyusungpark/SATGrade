@@ -1,5 +1,5 @@
-import React, { FC } from 'react';
-import { StyleSheet, Text, TouchableOpacity } from 'react-native';
+import React from 'react';
+import { Dimensions, StyleSheet, Text, TouchableOpacity } from 'react-native';
 
 type Props = {
 	title: string;
@@ -16,7 +16,7 @@ const AppButton = ({ title, onPress }: Props) => {
 
 const styles = StyleSheet.create({
 	container: {
-		width: '80%',
+		width: Dimensions.get('window').width * 0.8,
 		flexDirection: 'row',
 		justifyContent: 'center',
 

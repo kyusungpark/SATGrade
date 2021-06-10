@@ -4,25 +4,13 @@ import { Ionicons } from '@expo/vector-icons';
 // import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import {
-	GradeScreen,
 	HomeScreen,
 	ProfileScreen,
 	RankingsScreen,
 	StatsScreen,
 } from '../screens';
 
-// const screenOptions = ({route}) => {
-//   tabBaricon: ({ focused, color, size }) => {
-//     let iconName;
-
-//     if (route.name === 'Home') {
-//       iconName = focused ? 'ios-information-circle' : 'ios-information-circle-outline';
-//     } else if (route.name === 'Settings') {
-//       iconName = focused ? 'ios-list-bos' : 'ios-list';
-//   }
-
-//     return <Ionicons name={iconName } size={size} color={color} />
-// }
+import GradeNavigator from './GradeNavigator';
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
@@ -33,7 +21,7 @@ const TabNavigation = () => {
 			screenOptions={screenOptions}
 			tabBarOptions={tabBarOptions}
 		>
-			<Screen name='Grade' component={GradeScreen} />
+			<Screen name='Grade' component={GradeNavigator} />
 			<Screen name='Ranking' component={RankingsScreen} />
 			<Screen name='Home' component={HomeScreen} />
 			<Screen name='Stats' component={StatsScreen} />

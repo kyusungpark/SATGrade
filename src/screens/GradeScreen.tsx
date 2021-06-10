@@ -1,34 +1,49 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
 	Dimensions,
 	SafeAreaView,
-	ScrollView,
 	StatusBar,
 	StyleSheet,
+	Text,
+	VirtualizedList,
 	View,
 } from 'react-native';
 
 import AppButton from '../components/AppButton';
-import Test from '../components/forms/Test';
-import { createACT, createSAT } from '../components/forms/Skeleton';
+import { ACT, SAT } from '../components/forms/TestForm';
+import MultipleChoice from '../components/forms/MultipleChoice';
+import Grid from '../components/forms/Grid';
 
 // uncontrolled form
 // react-hook-form
 // redux: reselect library for redux
 
-
-// ACT = { section: [ { type: 'MC', choice: '', choices: ['ABCD', 'FGHJ'] } ] }
-// SAT = { section: [ { type: 'MC || BLANK', choice: '', choices: ['ABCD', 'FGHJ'] } ] }
 const GradeScreen = () => {
-	const [type, setType] = useState<string | null>('SAT');
+	const [type, setType] = useState<string | null>(null);
 	const [testId, setTestId] = useState<string | null>(null);
-	// conditionally render screen
-	const [form, setForm] = useState(type === 'ACT' ? createACT : createSAT);
+	const [form, setForm] = useState({ ACT, SAT });
 
-	//! infinite render onPress for the buttons when using setType
-	// useEffect(() => {}, [form]);
+	const renderItem = ({ item }) => {
+		const { choice, choices, number, section, type } = item;
+		const output = [];
 
-	console.log('GradeScreen type: ', type);
+		if (number === 1) output.push(<Text key={section}>{section}</Text>);
+		if (type === 'GRID') output.push(<Grid key={number} number={number} />);
+		if (type === 'MC') {
+			output.push(
+				<MultipleChoice
+					key={number}
+					number={number}
+					choices={number % 2 !== 0 ? choices[0] : choices[1]}
+				/>
+			);
+		}
+
+		return output;
+	};
+
+	const getItem = (data, index) => data[index];
+	const getItemCount = data => data.length;
 
 	return (
 		<SafeAreaView style={styles.container}>
@@ -36,15 +51,19 @@ const GradeScreen = () => {
 				<AppButton title='ACT' onPress={() => setType('ACT')} />
 				<AppButton title='SAT' onPress={() => setType('SAT')} />
 			</View>
-			<View style={styles.button}>
-				<AppButton title='Test Date' onPress={() => setTestId('201912')} />
-			</View>
-			<ScrollView
-				style={styles.scrollView}
+			<VirtualizedList
+				data={type === 'ACT' ? form.ACT : form.SAT}
+				getItem={getItem}
+				getItemCount={getItemCount}
+				initialNumToRender={15}
+				keyExtractor={item => `${item.section}${item.number}`}
+				renderItem={renderItem}
+				persistentScrollbar={true}
+				style={styles.list}
+				contentContainerStyle={styles.content}
 				showsVerticalScrollIndicator={false}
-			>
-				<Test form={form} type={type} />
-			</ScrollView>
+				showsHorizontalScrollIndicator={false}
+			/>
 		</SafeAreaView>
 	);
 };
@@ -57,17 +76,19 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		paddingTop: StatusBar.currentHeight,
 	},
-	scrollView: {
-		flex: 1,
+	list: {
+		width: Dimensions.get('window').width,
 		backgroundColor: 'pink',
-		marginHorizontal: 0.5,
-		width: '90%',
+		fontSize: 20,
+	},
+	content: {
+		fontSize: 20,
+		justifyContent: 'center',
 	},
 	button: {
-		flexDirection: 'row',
-		width: Dimensions.get('window').width * 0.4,
-
-		// alignItems: 'center',
+		alignItems: 'center',
 		justifyContent: 'center',
+		// flexDirection: 'row',
+		width: Dimensions.get('window').width * 0.3,
 	},
 });
