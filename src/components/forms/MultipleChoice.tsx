@@ -3,10 +3,15 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import Choice from './Choice';
 
-const MultipleChoice = ({ choices, number }) => {
+interface Props {
+	choices: any[]; //! types // ERROR
+	number: number;
+}
+
+const MultipleChoice = ({ choices, number }: Props) => {
 	const choice = choices
 		.split('')
-		.map((letter, i) => <Choice key={i} letter={letter} />);
+		.map((letter: any, i: number) => <Choice key={i} letter={letter} />);
 
 	return (
 		<View style={styles.container}>

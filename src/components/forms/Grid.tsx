@@ -3,7 +3,11 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import AppTextInput from '../AppTextInput';
 
-const Grid = ({ number }) => {
+interface Props {
+	number: number;
+}
+
+const Grid = ({ number }: Props) => {
 	const onChangeText = () => {
 		console.log('manage state');
 	};

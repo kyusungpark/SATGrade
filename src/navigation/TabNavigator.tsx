@@ -1,7 +1,6 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
-// import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import {
 	HomeScreen,
@@ -11,8 +10,9 @@ import {
 } from '../screens';
 
 import GradeNavigator from './GradeNavigator';
+import { TabParams } from '../screens/TabParams';
 
-const { Navigator, Screen } = createBottomTabNavigator();
+const { Navigator, Screen } = createBottomTabNavigator<TabParams>();
 
 const TabNavigation = () => {
 	return (

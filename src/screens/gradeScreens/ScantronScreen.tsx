@@ -9,21 +9,33 @@ import {
 	View,
 } from 'react-native';
 
-import AppButton from '../components/AppButton';
-import { ACT, SAT } from '../components/forms/TestForm';
-import MultipleChoice from '../components/forms/MultipleChoice';
-import Grid from '../components/forms/Grid';
+import AppButton from '../../components/AppButton';
+import { ACT, SAT } from '../../components/forms/TestForm';
+import MultipleChoice from '../../components/forms/MultipleChoice';
+import Grid from '../../components/forms/Grid';
 
 // uncontrolled form
 // react-hook-form
 // redux: reselect library for redux
+
+// show submit button on header?
+
+interface Item {
+	item: {
+		choice: string;
+		choices: any[]; //! types check
+		number: number;
+		section: string;
+		type: string;
+	};
+}
 
 const GradeScreen = () => {
 	const [type, setType] = useState<string | null>(null);
 	const [testId, setTestId] = useState<string | null>(null);
 	const [form, setForm] = useState({ ACT, SAT });
 
-	const renderItem = ({ item }) => {
+	const renderItem = ({ item }: Item) => {
 		const { choice, choices, number, section, type } = item;
 		const output = [];
 
@@ -42,8 +54,9 @@ const GradeScreen = () => {
 		return output;
 	};
 
-	const getItem = (data, index) => data[index];
-	const getItemCount = data => data.length;
+	//! types CHECK
+	const getItem = (data: any[], index: number) => data[index];
+	const getItemCount = (data: any[]) => data.length;
 
 	return (
 		<SafeAreaView style={styles.container}>

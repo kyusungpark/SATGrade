@@ -1,11 +1,13 @@
 import React, { FC } from 'react';
-import { StyleSheet, Text, TextInput, View } from 'react-native';
+import { StyleSheet, TextInput, View } from 'react-native';
 
-type Props = {
+//! types FC?
+
+interface Props {
 	// error: string | null; //! optional? string | null
 	placeholder: string;
-	onChangeText: (text: string) => void;
-};
+	onChangeText: () => void; //? do I have to pass in test here?
+}
 
 const Input: FC<Props> = ({ placeholder, onChangeText }) => {
 	return (

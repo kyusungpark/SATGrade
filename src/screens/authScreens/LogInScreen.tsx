@@ -1,18 +1,16 @@
 import React, { FC, useState } from 'react';
 import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
 
-import AppTextInput from '../components/AppTextInput';
-import AppButton from '../components/AppButton';
-import firebase from '../config/firebase';
+import AppTextInput from '../../components/AppTextInput';
+import AppButton from '../../components/AppButton';
+import firebase from '../../config/firebase';
+import { AuthNavProps } from './AuthParams';
 
-type Props = {
-	navigation: any;
-};
+//! types
 
-const LogInScreen: FC<Props> = ({ navigation }) => {
-	const [email, setEmail] = useState<string>('');
-	const [password, setPassword] = useState<string>('');
-	// const [error, setError] = useState<string | null>(null);
+const LogInScreen = ({ navigation }: AuthNavProps<'LogIn'>) => {
+	const [email, setEmail] = useState<string | null>(null);
+	const [password, setPassword] = useState<string | null>(null);
 
 	// handle missing field error
 	const handleLogIn = async () => {
@@ -21,8 +19,7 @@ const LogInScreen: FC<Props> = ({ navigation }) => {
 				.auth()
 				.signInWithEmailAndPassword(email.trim(), password.trim());
 		} catch (e) {
-			// setError(e.message);
-			console.log(e.message);
+			console.error(e.message);
 		}
 	};
 
@@ -41,7 +38,7 @@ const LogInScreen: FC<Props> = ({ navigation }) => {
 			<View style={{ flexDirection: 'row' }}>
 				<Text>Dont't Have an Account? </Text>
 				<Text
-					style={{ color: 'blue' }}
+					style={{ color: 'lightblue' }}
 					onPress={() => navigation.navigate('SignUp')}
 				>
 					Sign up

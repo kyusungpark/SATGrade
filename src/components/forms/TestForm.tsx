@@ -1,3 +1,5 @@
+//! types
+
 const createACT = () => {
 	const sections = {
 		English: 75,
@@ -5,7 +7,7 @@ const createACT = () => {
 		Reading: 40,
 		Science: 40,
 	};
-	const form = [];
+	const form: any[] = [];
 
 	Object.entries(sections).forEach(([section, questions], idx) => {
 		for (let i = 1; i <= questions; i++) {
@@ -35,7 +37,7 @@ const createSAT = () => {
 		'Math No Calculator': 20, // 1-15 MC | 16-20 Grid
 		'Math Calculator': 38, // 1-30 MC | 31-38 Grid
 	};
-	const form = [];
+	const form: any[] = [];
 
 	Object.entries(sections).forEach(([section, questions], idx) => {
 		for (let i = 1; i <= questions; i++) {

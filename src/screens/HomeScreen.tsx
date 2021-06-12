@@ -1,14 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { Button, SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
 
 import firebase from '../config/firebase';
 
-type Props = {
-	navigation: any;
-};
+//! types
 
-// should not be able to go back to authStack when logged in
-const HomeScreen = ({ navigation }: Props) => {
+const HomeScreen = () => {
+  // does not render when new sign up
 	//? WHY ? after currentUser
 	const user = firebase.auth().currentUser?.displayName;
 

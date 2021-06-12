@@ -1,10 +1,10 @@
 import React from 'react';
 import { Dimensions, StyleSheet, Text, TouchableOpacity } from 'react-native';
 
-type Props = {
+interface Props {
 	title: string;
-	onPress: () => void;
-};
+	onPress: () => void; //! types HOW
+}
 
 const AppButton = ({ title, onPress }: Props) => {
 	return (

@@ -1,24 +1,23 @@
-import React, { FC, useState } from 'react';
+import React, { useState } from 'react';
 import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
 
-import AppButton from '../components/AppButton';
-import AppTextInput from '../components/AppTextInput';
-import firebase from '../config/firebase';
+import AppButton from '../../components/AppButton';
+import AppTextInput from '../../components/AppTextInput';
+import firebase from '../../config/firebase';
+import { AuthNavProps } from './AuthParams';
 
-type Props = {
-	navigation: any;
-};
+//! types
 
-const SignUpScreen = ({ navigation }: Props) => {
-	const [name, setName] = useState<string>('');
-	const [email, setEmail] = useState<string>('');
-	const [password, setPassword] = useState<string>('');
-	const [confirmPassword, setConfirmPassword] = useState<string>('');
-	// const [error, setError] = useState<string | null>(null); //! WHY object not valid children
+// handle missing field error
+// require password length to be at least 6 characters
+// show in textinput filled if something is missing
+// create alert component
 
-	// handle missing field error
-	//! require password length to be at least 6 characters
-	//! show in textinput filled if something is missing
+const SignUpScreen = ({ navigation }: AuthNavProps<'SignUp'>) => {
+	const [name, setName] = useState<string | null>(null);
+	const [email, setEmail] = useState<string | null>(null);
+	const [password, setPassword] = useState<string | null>(null);
+	const [confirmPassword, setConfirmPassword] = useState<string | null>(null);
 
 	const handleSignUp = async () => {
 		if (password !== confirmPassword) {
@@ -31,19 +30,16 @@ const SignUpScreen = ({ navigation }: Props) => {
 				.createUserWithEmailAndPassword(email.trim(), password.trim());
 
 			if (user) {
-				// add to firestore
 				await firebase
 					.firestore()
 					.collection('users')
 					.doc(user.uid)
 					.set({ name: name.trim(), email: email.trim(), id: user.uid });
 
-				// set displayname
 				await user?.updateProfile({ displayName: name });
 			}
 		} catch (e) {
-			// setError(e.message);
-			console.log(e.message);
+			console.error(e.message);
 		}
 	};
 

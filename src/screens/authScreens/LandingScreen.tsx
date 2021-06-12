@@ -1,12 +1,9 @@
-import React, { FC } from 'react';
-import { Button, SafeAreaView, StyleSheet, Text } from 'react-native';
-import AppButton from '../components/AppButton';
+import React from 'react';
+import { SafeAreaView, StyleSheet, Text } from 'react-native';
+import AppButton from '../../components/AppButton';
+import { AuthNavProps } from './AuthParams';
 
-type Props = {
-  navigation: any; 
-};
-
-const HomeScreen: FC<Props> = ({ navigation }) => {
+const HomeScreen = ({ navigation }: AuthNavProps<'Landing'>) => {
 	return (
 		<SafeAreaView style={styles.container}>
 			<Text>Landing Screen</Text>

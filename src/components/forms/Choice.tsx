@@ -1,17 +1,19 @@
 import React from 'react';
 import { Dimensions, StyleSheet, Text, TouchableHighlight } from 'react-native';
 
-const Choice = ({ letter }) => {
-	return (
-		<TouchableHighlight
-			style={styles.circle}
-			underlayColor='#fff'
-			onPress={() => alert('click')}
-		>
-			<Text>{letter}</Text>
-		</TouchableHighlight>
-	);
-};
+interface Props {
+	letter: any;
+}
+
+const Choice = ({ letter }: Props) => (
+	<TouchableHighlight
+		style={styles.circle}
+		underlayColor='#fff'
+		onPress={() => alert('hi')}
+	>
+		<Text>{letter}</Text>
+	</TouchableHighlight>
+);
 
 export default Choice;
 
@@ -30,6 +32,6 @@ const styles = StyleSheet.create({
 
 		justifyContent: 'center',
 		alignItems: 'center',
-		margin: 5,
+		margin: Dimensions.get('window').width * 0.03,
 	},
 });

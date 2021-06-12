@@ -1,8 +1,10 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import AppButton from '../components/AppButton';
+import { StyleSheet, View } from 'react-native';
 
-const GradeHomeScreen = ({ navigation }) => {
+import AppButton from '../../components/AppButton';
+import { GradeNavProps } from './GradeParams';
+
+const GradeHomeScreen = ({ navigation }: GradeNavProps<'GradeHome'>) => {
 	return (
 		<View style={styles.container}>
 			<AppButton
