@@ -1,4 +1,10 @@
-//! types
+interface ItemProps {
+	section: string;
+	number: number;
+	type: string;
+	choice: string;
+	choices?: string[];
+}
 
 const createACT = () => {
 	const sections = {
@@ -11,13 +17,13 @@ const createACT = () => {
 
 	Object.entries(sections).forEach(([section, questions], idx) => {
 		for (let i = 1; i <= questions; i++) {
-			const item = {};
-
-			item['section'] = section;
-			item['number'] = i;
-			item['type'] = 'MC';
-			item['choice'] = '';
-			item['choices'] = ['ABCD', 'FGHJ'];
+			const item: ItemProps = {
+				section,
+				number: i,
+				type: 'MC',
+				choice: '',
+				choices: ['ABCD', 'FGHJ'],
+			};
 
 			if (section === 'Math') {
 				item['choices'] = ['ABCDE', 'FGHJK'];
@@ -41,13 +47,13 @@ const createSAT = () => {
 
 	Object.entries(sections).forEach(([section, questions], idx) => {
 		for (let i = 1; i <= questions; i++) {
-			const item = {};
-
-			item['section'] = section;
-			item['number'] = i;
-			item['type'] = 'MC';
-			item['choice'] = '';
-			item['choices'] = ['ABCD', 'ABCD'];
+			const item: ItemProps = {
+				section,
+				number: i,
+				type: 'MC',
+				choice: '',
+				choices: ['ABCD', 'ABCD'],
+			};
 
 			if (section === 'Math No Calculator' && i > 15) {
 				item['type'] = 'GRID';

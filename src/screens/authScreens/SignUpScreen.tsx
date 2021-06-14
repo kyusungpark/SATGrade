@@ -1,50 +1,29 @@
 import React, { useState } from 'react';
-import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
+import { useDispatch } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
-import AppButton from '../../components/AppButton';
-import AppTextInput from '../../components/AppTextInput';
-import firebase from '../../config/firebase';
+import { AppButton, AppTextInput, CenterSafeAreaView } from '../../components';
 import { AuthNavProps } from './AuthParams';
+import { authActionCreator } from '../../state';
 
-//! types
-
+// DO
 // handle missing field error
 // require password length to be at least 6 characters
 // show in textinput filled if something is missing
 // create alert component
 
 const SignUpScreen = ({ navigation }: AuthNavProps<'SignUp'>) => {
-	const [name, setName] = useState<string | null>(null);
-	const [email, setEmail] = useState<string | null>(null);
-	const [password, setPassword] = useState<string | null>(null);
-	const [confirmPassword, setConfirmPassword] = useState<string | null>(null);
+	const dispatch = useDispatch();
+	const { signUp } = bindActionCreators(authActionCreator, dispatch);
 
-	const handleSignUp = async () => {
-		if (password !== confirmPassword) {
-			return alert('Password do not match');
-		}
-
-		try {
-			const { user } = await firebase
-				.auth()
-				.createUserWithEmailAndPassword(email.trim(), password.trim());
-
-			if (user) {
-				await firebase
-					.firestore()
-					.collection('users')
-					.doc(user.uid)
-					.set({ name: name.trim(), email: email.trim(), id: user.uid });
-
-				await user?.updateProfile({ displayName: name });
-			}
-		} catch (e) {
-			console.error(e.message);
-		}
-	};
+	const [name, setName] = useState<string>('');
+	const [email, setEmail] = useState<string>('');
+	const [password, setPassword] = useState<string>('');
+	const [confirmPassword, setConfirmPassword] = useState<string>('');
 
 	return (
-		<SafeAreaView style={styles.container}>
+		<CenterSafeAreaView>
 			<Text>Sign Up</Text>
 			<AppTextInput placeholder={'Name'} onChangeText={text => setName(text)} />
 			<AppTextInput
@@ -59,7 +38,10 @@ const SignUpScreen = ({ navigation }: AuthNavProps<'SignUp'>) => {
 				placeholder={'Confirm Password'}
 				onChangeText={text => setConfirmPassword(text)}
 			/>
-			<AppButton title={'Register'} onPress={handleSignUp} />
+			<AppButton
+				title={'Register'}
+				onPress={() => signUp(name, email, password, confirmPassword)}
+			/>
 			<View style={{ flexDirection: 'row' }}>
 				<Text>Have an Account? </Text>
 				<Text
@@ -69,16 +51,8 @@ const SignUpScreen = ({ navigation }: AuthNavProps<'SignUp'>) => {
 					Log in
 				</Text>
 			</View>
-		</SafeAreaView>
+		</CenterSafeAreaView>
 	);
 };
 
 export default SignUpScreen;
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		alignItems: 'center',
-		justifyContent: 'center',
-	},
-});

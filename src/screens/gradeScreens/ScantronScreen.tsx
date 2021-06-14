@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import {
 	Dimensions,
-	SafeAreaView,
 	StatusBar,
 	StyleSheet,
 	Text,
@@ -9,10 +8,13 @@ import {
 	View,
 } from 'react-native';
 
-import AppButton from '../../components/AppButton';
+import {
+	AppButton,
+	MultipleChoice,
+	Grid,
+	CenterSafeAreaView,
+} from '../../components';
 import { ACT, SAT } from '../../components/forms/TestForm';
-import MultipleChoice from '../../components/forms/MultipleChoice';
-import Grid from '../../components/forms/Grid';
 
 // uncontrolled form
 // react-hook-form
@@ -23,7 +25,7 @@ import Grid from '../../components/forms/Grid';
 interface Item {
 	item: {
 		choice: string;
-		choices: any[]; //! types check
+		choices: string[]; //FIX types check
 		number: number;
 		section: string;
 		type: string;
@@ -31,8 +33,8 @@ interface Item {
 }
 
 const GradeScreen = () => {
-	const [type, setType] = useState<string | null>(null);
-	const [testId, setTestId] = useState<string | null>(null);
+	const [type, setType] = useState('');
+	const [testId, setTestId] = useState('');
 	const [form, setForm] = useState({ ACT, SAT });
 
 	const renderItem = ({ item }: Item) => {
@@ -54,12 +56,12 @@ const GradeScreen = () => {
 		return output;
 	};
 
-	//! types CHECK
-	const getItem = (data: any[], index: number) => data[index];
-	const getItemCount = (data: any[]) => data.length;
+	// FIX check types
+	const getItem = (data, index) => data[index];
+	const getItemCount = data => data.length;
 
 	return (
-		<SafeAreaView style={styles.container}>
+		<CenterSafeAreaView style={styles.container}>
 			<View style={styles.button}>
 				<AppButton title='ACT' onPress={() => setType('ACT')} />
 				<AppButton title='SAT' onPress={() => setType('SAT')} />
@@ -77,7 +79,7 @@ const GradeScreen = () => {
 				showsVerticalScrollIndicator={false}
 				showsHorizontalScrollIndicator={false}
 			/>
-		</SafeAreaView>
+		</CenterSafeAreaView>
 	);
 };
 
@@ -85,8 +87,6 @@ export default GradeScreen;
 
 const styles = StyleSheet.create({
 	container: {
-		flex: 1,
-		alignItems: 'center',
 		paddingTop: StatusBar.currentHeight,
 	},
 	list: {

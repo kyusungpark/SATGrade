@@ -9,7 +9,7 @@ interface Props {
 
 const Grid = ({ number }: Props) => {
 	const onChangeText = () => {
-		console.log('manage state');
+		// console.log('manage state');
 	};
 
 	return (

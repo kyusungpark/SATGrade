@@ -1,30 +1,27 @@
-import React, { FC, useState } from 'react';
-import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { Text, View } from 'react-native';
+import { useDispatch } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
-import AppTextInput from '../../components/AppTextInput';
-import AppButton from '../../components/AppButton';
-import firebase from '../../config/firebase';
+import { AppTextInput, AppButton, CenterSafeAreaView } from '../../components';
 import { AuthNavProps } from './AuthParams';
+import { authActionCreator } from '../../state';
 
-//! types
+const useLogin = () => {
+	const dispatch = useDispatch();
+	const { logIn } = bindActionCreators(authActionCreator, dispatch);
+
+	const [email, setEmail] = useState<string>('');
+	const [password, setPassword] = useState<string>('');
+
+	return { logIn, email, password, setEmail, setPassword };
+};
 
 const LogInScreen = ({ navigation }: AuthNavProps<'LogIn'>) => {
-	const [email, setEmail] = useState<string | null>(null);
-	const [password, setPassword] = useState<string | null>(null);
-
-	// handle missing field error
-	const handleLogIn = async () => {
-		try {
-			await firebase
-				.auth()
-				.signInWithEmailAndPassword(email.trim(), password.trim());
-		} catch (e) {
-			console.error(e.message);
-		}
-	};
+	const { logIn, email, password, setEmail, setPassword } = useLogin();
 
 	return (
-		<SafeAreaView style={styles.container}>
+		<CenterSafeAreaView>
 			<Text>Log in</Text>
 			<AppTextInput
 				placeholder={'Email'}
@@ -34,7 +31,7 @@ const LogInScreen = ({ navigation }: AuthNavProps<'LogIn'>) => {
 				placeholder={'Password'}
 				onChangeText={text => setPassword(text)}
 			/>
-			<AppButton title={'Continue'} onPress={handleLogIn} />
+			<AppButton title={'Continue'} onPress={() => logIn(email, password)} />
 			<View style={{ flexDirection: 'row' }}>
 				<Text>Dont't Have an Account? </Text>
 				<Text
@@ -44,16 +41,8 @@ const LogInScreen = ({ navigation }: AuthNavProps<'LogIn'>) => {
 					Sign up
 				</Text>
 			</View>
-		</SafeAreaView>
+		</CenterSafeAreaView>
 	);
 };
 
 export default LogInScreen;
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		alignItems: 'center',
-		justifyContent: 'center',
-	},
-});

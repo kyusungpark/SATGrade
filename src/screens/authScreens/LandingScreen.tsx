@@ -1,11 +1,12 @@
 import React from 'react';
-import { SafeAreaView, StyleSheet, Text } from 'react-native';
-import AppButton from '../../components/AppButton';
+import { Text } from 'react-native';
+
+import { AppButton, CenterSafeAreaView } from '../../components';
 import { AuthNavProps } from './AuthParams';
 
-const HomeScreen = ({ navigation }: AuthNavProps<'Landing'>) => {
+const LandingScreen = ({ navigation }: AuthNavProps<'Landing'>) => {
 	return (
-		<SafeAreaView style={styles.container}>
+		<CenterSafeAreaView>
 			<Text>Landing Screen</Text>
 			<AppButton
 				title={'Sign Up'}
@@ -16,16 +17,8 @@ const HomeScreen = ({ navigation }: AuthNavProps<'Landing'>) => {
 				title={'Log In'}
 				onPress={() => navigation.navigate('LogIn')}
 			/>
-		</SafeAreaView>
+		</CenterSafeAreaView>
 	);
 };
 
-export default HomeScreen;
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		alignItems: 'center',
-		justifyContent: 'center',
-	},
-});
+export default LandingScreen;

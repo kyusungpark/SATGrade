@@ -1,34 +1,18 @@
 import React from 'react';
-import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
-
-import firebase from '../config/firebase';
-
-//! types
+import { Text } from 'react-native';
+import { useSelector } from 'react-redux';
+import { CenterSafeAreaView } from '../components';
+import { State } from '../state';
 
 const HomeScreen = () => {
-  // does not render when new sign up
-	//? WHY ? after currentUser
-	const user = firebase.auth().currentUser?.displayName;
+	const name = useSelector((state: State) => state.auth.name); // FIX types
 
 	return (
-		<SafeAreaView style={styles.container}>
-			<View style={styles.text}>
-				<Text>Welcome</Text>
-				<Text>{user}</Text>
-			</View>
-		</SafeAreaView>
+		<CenterSafeAreaView>
+			<Text>Welcome</Text>
+			<Text>{name}</Text>
+		</CenterSafeAreaView>
 	);
 };
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		alignItems: 'center',
-		justifyContent: 'center',
-	},
-	text: {
-		alignItems: 'center',
-	},
-});
 
 export default HomeScreen;

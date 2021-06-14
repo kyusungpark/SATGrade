@@ -3,7 +3,7 @@ import { Dimensions, StyleSheet, Text, TouchableOpacity } from 'react-native';
 
 interface Props {
 	title: string;
-	onPress: () => void; //! types HOW
+	onPress: () => void; 
 }
 
 const AppButton = ({ title, onPress }: Props) => {

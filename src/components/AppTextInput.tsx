@@ -1,17 +1,23 @@
 import React, { FC } from 'react';
-import { StyleSheet, TextInput, View } from 'react-native';
+import {
+	StyleSheet,
+	TextInput,
+	View,
+	StyleProp,
+	ViewStyle,
+} from 'react-native';
 
-//! types FC?
+// DO SHOW ERROR MESSAGE
 
 interface Props {
-	// error: string | null; //! optional? string | null
 	placeholder: string;
-	onChangeText: () => void; //? do I have to pass in test here?
+	style?: StyleProp<ViewStyle>;
+	onChangeText: (string: string) => void;
 }
 
-const Input: FC<Props> = ({ placeholder, onChangeText }) => {
+const AppTextInput: FC<Props> = ({ placeholder, style, onChangeText }) => {
 	return (
-		<View style={styles.container}>
+		<View style={style ? [styles.container, style] : styles.container}>
 			<TextInput
 				autoCapitalize='none'
 				style={styles.text}
@@ -25,6 +31,8 @@ const Input: FC<Props> = ({ placeholder, onChangeText }) => {
 		</View>
 	);
 };
+
+export default AppTextInput;
 
 const styles = StyleSheet.create({
 	container: {
@@ -44,5 +52,3 @@ const styles = StyleSheet.create({
 		paddingLeft: 20,
 	},
 });
-
-export default Input;

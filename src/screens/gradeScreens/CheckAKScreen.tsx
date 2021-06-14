@@ -1,20 +1,14 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Text } from 'react-native';
+
+import { Center } from '../../components';
 
 const CheckAKScreen = () => {
 	return (
-		<View style={styles.container}>
+		<Center>
 			<Text>Check your Answers Here</Text>
-		</View>
+		</Center>
 	);
 };
 
 export default CheckAKScreen;
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		alignItems: 'center',
-		justifyContent: 'center',
-	},
-});

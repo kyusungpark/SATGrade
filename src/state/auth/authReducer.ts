@@ -1,34 +1,48 @@
-import { ActionType } from './actionType';
-import { Types } from './types';
-
-//! types for initial state
+import { AuthTypes, AuthState, AuthActionType } from './authTypes';
 
 const initialState = {
-	user: null,
-	isLoggedIn: false,
 	error: null,
+	user: null,
+	name: '',
 };
 
-export default (state = initialState, action: Types) => {
+export default (state: AuthState = initialState, action: AuthTypes) => {
 	switch (action.type) {
-		case ActionType.SIGN_UP: {
+		case AuthActionType.AUTH_FAIL: {
 			return {
 				...state,
-				isLoggedIn: false,
+				error: action.payload.error, // DO handle error
 			};
 		}
 
-		case ActionType.SIGN_OUT: {
+		case AuthActionType.LOG_IN: {
 			return {
 				...state,
-				isLoggedIn: true,
+				name: action.payload.name,
+				user: action.payload.user,
 			};
 		}
 
-		case ActionType.LOG_IN: {
+		case AuthActionType.SET_USER_STATUS: {
 			return {
 				...state,
-				isLoggedIn: true,
+				user: action.payload.user,
+			};
+		}
+
+		case AuthActionType.SIGN_OUT: {
+			return {
+				...state,
+				name: null,
+				user: null,
+			};
+		}
+
+		case AuthActionType.SIGN_UP: {
+			return {
+				...state,
+				name: action.payload.name,
+				user: action.payload.user,
 			};
 		}
 

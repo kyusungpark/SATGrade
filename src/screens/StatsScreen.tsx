@@ -1,20 +1,13 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Text } from 'react-native';
+import { Center } from '../components';
 
 const StatsScreen = () => {
 	return (
-		<View style={styles.container}>
+		<Center>
 			<Text>Dashboard</Text>
-		</View>
+		</Center>
 	);
 };
 
 export default StatsScreen;
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		alignItems: 'center',
-		justifyContent: 'center',
-	},
-});

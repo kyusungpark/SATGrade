@@ -1,37 +1,21 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import firebase from '../config/firebase';
+import { Text } from 'react-native';
+import { useDispatch } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
-import AppButton from '../components/AppButton';
+import { AppButton, Center } from '../components';
+import { authActionCreator } from '../state';
 
 const ProfileScreen = () => {
-	// const user = firebase.auth().currentUser;
+	const dispatch = useDispatch();
+	const { signOut } = bindActionCreators(authActionCreator, dispatch);
 
-	const handleSignOut = async () => {
-		try {
-			await firebase.auth().signOut();
-		} catch (e) {
-			console.error(e.message);
-		}
-	};
 	return (
-		<View style={styles.container}>
+		<Center>
 			<Text>Profile</Text>
-			<AppButton title='Sign out' onPress={handleSignOut} />
-		</View>
+			<AppButton title='Sign out' onPress={signOut} />
+		</Center>
 	);
 };
 
 export default ProfileScreen;
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		alignItems: 'center',
-		justifyContent: 'center',
-	},
-	button: {
-		backgroundColor: 'white',
-		color: 'red',
-	},
-});

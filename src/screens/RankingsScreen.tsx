@@ -1,20 +1,13 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Text } from 'react-native';
+import { Center } from '../components';
 
 const GradeScreen = () => {
 	return (
-		<View style={styles.container}>
+		<Center>
 			<Text>Rankings</Text>
-		</View>
+		</Center>
 	);
 };
 
 export default GradeScreen;
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		alignItems: 'center',
-		justifyContent: 'center',
-	},
-});

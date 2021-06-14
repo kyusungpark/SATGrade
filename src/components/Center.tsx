@@ -1,13 +1,14 @@
-import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import React, { FC } from 'react';
+import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
 
-//! types CHECK PLEASE
 interface Props {
-  children: any;
+	style?: StyleProp<ViewStyle>;
 }
 
-const Center = ({ children }: Props) => (
-	<View style={styles.container}>{children}</View>
+const Center: FC<Props> = ({ children, style }) => (
+	<View style={style ? [styles.container, style] : styles.container}>
+		{children}
+	</View>
 );
 
 export default Center;
