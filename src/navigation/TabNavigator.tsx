@@ -5,7 +5,7 @@ import { Ionicons } from '@expo/vector-icons';
 import {
 	HomeScreen,
 	ProfileScreen,
-	RankingsScreen,
+	RankingScreen,
 	StatsScreen,
 } from '../screens';
 
@@ -22,7 +22,7 @@ const TabNavigation = () => {
 			tabBarOptions={tabBarOptions}
 		>
 			<Screen name='Grade' component={GradeNavigator} />
-			<Screen name='Ranking' component={RankingsScreen} />
+			<Screen name='Ranking' component={RankingScreen} />
 			<Screen name='Home' component={HomeScreen} />
 			<Screen name='Stats' component={StatsScreen} />
 			<Screen name='Profile' component={ProfileScreen} />
@@ -32,6 +32,7 @@ const TabNavigation = () => {
 
 export default TabNavigation;
 
+// FIX types
 const screenOptions = ({ route }) => ({
 	tabBarIcon: ({ focused, color, size }) => {
 		let icon;

@@ -13,14 +13,14 @@ import { Center } from './components';
 const Routes = () => {
 	const dispatch = useDispatch();
 	const { setUserStatus } = bindActionCreators(authActionCreator, dispatch);
-	const user = useSelector((state: State) => state.auth.user); // FIX Uuser Type
+	const user = useSelector((state: State) => state.auth.user);
 
 	const [loading, setLoading] = useState<boolean>(true);
 
 	useEffect(() => {
 		const unsubsribe = firebase.auth().onAuthStateChanged(user => {
 			setUserStatus(user);
-      setLoading(false);
+			setLoading(false);
 		});
 
 		// handle memory leak
@@ -31,7 +31,7 @@ const Routes = () => {
 
 	if (loading) {
 		return (
-			<Center>
+			<Center style={[styles.container, styles.horizontal]}>
 				<ActivityIndicator size='large' color='#555555' />
 			</Center>
 		);

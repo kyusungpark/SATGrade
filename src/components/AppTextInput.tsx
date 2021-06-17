@@ -7,7 +7,7 @@ import {
 	ViewStyle,
 } from 'react-native';
 
-// DO SHOW ERROR MESSAGE
+// ADD SHOW ERROR MESSAGE
 
 interface Props {
 	placeholder: string;

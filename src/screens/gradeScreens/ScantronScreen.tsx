@@ -25,11 +25,21 @@ import { ACT, SAT } from '../../components/forms/TestForm';
 interface Item {
 	item: {
 		choice: string;
-		choices: string[]; //FIX types check
+		choices: string[];
 		number: number;
 		section: string;
 		type: string;
 	};
+}
+
+// FIX kind of duplicate
+
+interface data {
+	choice: string;
+	choices: string[];
+	number: number;
+	section: string;
+	type: string;
 }
 
 const GradeScreen = () => {
@@ -56,9 +66,9 @@ const GradeScreen = () => {
 		return output;
 	};
 
-	// FIX check types
-	const getItem = (data, index) => data[index];
-	const getItemCount = data => data.length;
+	// CHECK renderItem type
+	const getItem = (data: data[], index: number) => data[index];
+	const getItemCount = (data: data[]) => data.length;
 
 	return (
 		<CenterSafeAreaView style={styles.container}>

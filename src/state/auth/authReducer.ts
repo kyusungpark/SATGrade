@@ -11,7 +11,7 @@ export default (state: AuthState = initialState, action: AuthTypes) => {
 		case AuthActionType.AUTH_FAIL: {
 			return {
 				...state,
-				error: action.payload.error, // DO handle error
+				error: action.payload.error,
 			};
 		}
 

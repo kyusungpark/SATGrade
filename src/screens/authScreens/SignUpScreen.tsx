@@ -7,7 +7,7 @@ import { AppButton, AppTextInput, CenterSafeAreaView } from '../../components';
 import { AuthNavProps } from './AuthParams';
 import { authActionCreator } from '../../state';
 
-// DO
+// ADD
 // handle missing field error
 // require password length to be at least 6 characters
 // show in textinput filled if something is missing

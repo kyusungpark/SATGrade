@@ -8,11 +8,11 @@ import ScantronScreen from './gradeScreens/ScantronScreen';
 
 import HomeScreen from './HomeScreen';
 
-import ProfileScreen from './ProfileScreen';
+import ProfileScreen from './profileScreens/ProfileScreen';
 
-import RankingsScreen from './RankingsScreen';
+import RankingScreen from './rankingScreens/RankingScreen';
 
-import StatsScreen from './StatsScreen';
+import StatsScreen from './statsScreens/StatsScreen';
 
 export {
 	CheckAKScreen,
@@ -22,7 +22,7 @@ export {
 	LandingScreen,
 	LogInScreen,
 	ProfileScreen,
-	RankingsScreen,
+	RankingScreen,
 	SignUpScreen,
 	StatsScreen,
 };

@@ -1,8 +1,8 @@
 import React from 'react';
 import { Text } from 'react-native';
-import { Center } from '../components';
+import { Center } from '../../components';
 
-const GradeScreen = () => {
+const RankingScreen = () => {
 	return (
 		<Center>
 			<Text>Rankings</Text>
@@ -10,4 +10,4 @@ const GradeScreen = () => {
 	);
 };
 
-export default GradeScreen;
+export default RankingScreen;

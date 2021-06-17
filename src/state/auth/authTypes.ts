@@ -7,7 +7,7 @@ export enum AuthActionType {
 }
 
 export interface AuthState {
-	name: string;
+	name: string | undefined | null;
 	user: object | null;
 	error: any;
 }
@@ -22,7 +22,7 @@ interface AuthFail {
 interface LogInAction {
 	type: AuthActionType.LOG_IN;
 	payload: {
-		name: string;
+		name: string | null | undefined;
 		user: object | null;
 	};
 }
@@ -41,7 +41,7 @@ interface SignOutAction {
 interface SignUpAction {
 	type: AuthActionType.SIGN_UP;
 	payload: {
-		name: string;
+		name: string 
 		user: object | null;
 	};
 }

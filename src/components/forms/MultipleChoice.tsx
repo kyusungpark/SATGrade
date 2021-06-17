@@ -1,17 +1,18 @@
 import React, { FC, ReactNode } from 'react';
 import { StyleSheet, Text } from 'react-native';
 
-import Center from '../Center'
+import Center from '../Center';
 // import { Center } from '..'; // ERROR cycles
 import Choice from './Choice';
 
 interface Props {
-	choices: ReactNode // FIX 
+	choices: string;
 	number: number;
 }
 
-// FIX need split to make 'ABCD' into an array
+// FIX this is returning <Choice> TYPES?
 const MultipleChoice: FC<Props> = ({ choices, number }) => {
+  console.log(choices)
 	const choice = choices
 		.split('')
 		.map((letter: string, i: number) => <Choice key={i} letter={letter} />);

@@ -73,7 +73,7 @@ export default {
 	) => {
 		return async (dispatch: Dispatch<AuthTypes>) => {
 			if (password !== confirmPassword) {
-				return 'Password do not match'; // FIX dispatch errorr
+				return 'Password do not match'; // ADD dispatch error
 			}
 
 			try {
@@ -82,7 +82,7 @@ export default {
 					.createUserWithEmailAndPassword(email.trim(), password.trim());
 
 				if (user) {
-					await firebase.firestore().collection('user').doc(user.uid).set({
+					await firebase.firestore().collection('users').doc(user.uid).set({
 						name: name.trim(),
 						email: email.trim(),
 						id: user.uid,

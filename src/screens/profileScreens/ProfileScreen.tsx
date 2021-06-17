@@ -3,8 +3,8 @@ import { Text } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { AppButton, Center } from '../components';
-import { authActionCreator } from '../state';
+import { AppButton, Center } from '../../components';
+import { authActionCreator } from '../../state';
 
 const ProfileScreen = () => {
 	const dispatch = useDispatch();

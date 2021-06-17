@@ -14,6 +14,15 @@ const GradeHomeScreen = ({ navigation }: GradeNavProps<'GradeHome'>) => {
 				title='Answer Key & Scale'
 				onPress={() => navigation.navigate('CheckAK')}
 			/>
+
+			<AppButton
+				title='ACT'
+				onPress={() => navigation.navigate('Scantron')}
+			/>
+			<AppButton
+				title='SAT'
+				onPress={() => navigation.navigate('CheckAK')}
+			/>
 		</Center>
 	);
 };

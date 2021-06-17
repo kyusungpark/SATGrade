@@ -3,9 +3,11 @@ import { Text } from 'react-native';
 import { useSelector } from 'react-redux';
 import { CenterSafeAreaView } from '../components';
 import { State } from '../state';
+import firebase from '../config/firebase';
 
 const HomeScreen = () => {
-	const name = useSelector((state: State) => state.auth.name); // FIX types
+	// const name = useSelector((state: State) => state.auth.name); // FIX doesn't work sometimes
+	const name = firebase.auth().currentUser?.displayName;
 
 	return (
 		<CenterSafeAreaView>
