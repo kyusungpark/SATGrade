@@ -1,7 +1,9 @@
-export enum ACTActionTypes {
+export enum ACTActionType {
 	ADD_AK = 'ADD_AK',
-	GET_AK_SCALE = 'GET_AK_SCALE',
+	ADD_SCALE = 'ADD_SCALE',
+	GET_AK = 'GET_AK',
 	GET_ANALYSIS = 'GET_ANALYSIS',
+	GET_SCALE = 'GET_SCALE',
 	GRADE_INPUT = 'GRADE_INPUT',
 	GRADE_TEST = 'GRADE_TEST',
 	SUBMIT_TEST = 'SUBMIT_TEST',
@@ -9,7 +11,33 @@ export enum ACTActionTypes {
 
 export interface ACTState {
 	testID: string;
-	testDate: Date;
-	answerKey: string[];
-	inputAnswers: string[];
+	testDate: Date | null;
+	studentAnswers: string[];
+	testAnswers: string[];
 }
+
+interface ACTAddAK {
+	type: ACTActionType.ADD_AK;
+	payload: {
+	};
+}
+
+interface ACTAddScale {
+	type: ACTActionType.ADD_SCALE;
+	payload: {
+	};
+}
+
+interface ACTGetAK {}
+
+interface ACTGetAnalysis {}
+
+interface ACTGetScale {}
+
+interface ACTGradeInput {}
+
+interface ACTGradeTest {}
+
+interface ACTSubmitTest {}
+
+export type ACTTypes = ACTAddAK;

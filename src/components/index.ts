@@ -8,6 +8,8 @@ import Grid from './forms/Grid';
 import MultipleChoice from './forms/MultipleChoice';
 // import TestForm from './forms/TestForm';
 
+import TableRow from './tables/TableRow';
+
 export {
 	AppButton,
 	AppTextInput,
@@ -16,4 +18,5 @@ export {
 	Choice,
 	Grid,
 	MultipleChoice,
+	TableRow,
 };

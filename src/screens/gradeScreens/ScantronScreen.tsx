@@ -34,7 +34,7 @@ interface Item {
 
 // FIX kind of duplicate
 
-interface data {
+interface Data {
 	choice: string;
 	choices: string[];
 	number: number;
@@ -67,8 +67,8 @@ const GradeScreen = () => {
 	};
 
 	// CHECK renderItem type
-	const getItem = (data: data[], index: number) => data[index];
-	const getItemCount = (data: data[]) => data.length;
+	const getItem = (data: Data[], index: number) => data[index];
+	const getItemCount = (data: Data[]) => data.length;
 
 	return (
 		<CenterSafeAreaView style={styles.container}>
@@ -77,6 +77,7 @@ const GradeScreen = () => {
 				<AppButton title='SAT' onPress={() => setType('SAT')} />
 			</View>
 			<VirtualizedList
+				contentContainerStyle={styles.content}
 				data={type === 'ACT' ? form.ACT : form.SAT}
 				getItem={getItem}
 				getItemCount={getItemCount}
@@ -84,10 +85,9 @@ const GradeScreen = () => {
 				keyExtractor={item => `${item.section}${item.number}`}
 				renderItem={renderItem}
 				persistentScrollbar={true}
-				style={styles.list}
-				contentContainerStyle={styles.content}
 				showsVerticalScrollIndicator={false}
 				showsHorizontalScrollIndicator={false}
+				style={styles.list}
 			/>
 		</CenterSafeAreaView>
 	);

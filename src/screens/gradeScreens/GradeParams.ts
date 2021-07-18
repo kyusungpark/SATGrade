@@ -2,8 +2,10 @@ import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 
 export type GradeParams = {
-	GradeHome: undefined;
+	ACT: undefined;
 	CheckAK: undefined;
+	GradeHome: undefined;
+	SAT: undefined;
 	Scantron: undefined;
 };
 
